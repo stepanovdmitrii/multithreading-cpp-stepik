@@ -16,9 +16,9 @@ int main(){
     if(qid == -1){
         std::cout << "error mq_open: " << errno << std::endl;
     }
-    char msg[2048];
-    memset(msg, 0, 2048);
-    ssize_t recv = mq_receive(qid, msg, 2048, nullptr);
+    char msg[8192];
+    memset(msg, 0, 8192);
+    ssize_t recv = mq_receive(qid, msg, 8192, nullptr);
     std::ofstream out("/home/box/message.txt");
     out << msg;
 }
