@@ -15,7 +15,7 @@ struct message
 
 int main(){
     key_t key = ftok("/tmp/msg.tmp", 1);
-    int msgid = msgget(key, IPC_CREAT | IPC_EXCL | 0666);
+    int msgid = msgget(key, IPC_CREAT | 0666);
     message msg;
     memset(&msg, 0, sizeof(message));
     ssize_t actual = msgrcv(msgid, &msg, MSG_LEN, 0, 0);
