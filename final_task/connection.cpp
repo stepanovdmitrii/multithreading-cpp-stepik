@@ -6,7 +6,7 @@ _socket(io_service), _handler(handler) {}
 boost::asio::ip::tcp::socket& connection::socket() { return _socket; }
 
 void connection::start(){
-    _socket.async_read_some(boost::asio::buffer(_buffer),
+    _socket.async_read_some(boost::asio::buffer(_buffer, 32768),
         boost::bind(&connection::handle_read, shared_from_this(),
         boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
@@ -32,12 +32,12 @@ void connection::handle_write(const boost::system::error_code& e){
 }
 
 bool connection::parse_request(size_t bytes_transferred){
+    std::string req_raw = std::string(_buffer, bytes_transferred);
+    std::cout << req_raw << std::endl;
     std::stringstream ss;
     for(size_t i = 0; i < bytes_transferred; ++i){
-        std::cout << (char)_buffer[i];
         ss << _buffer[i];
     }
-    std::cout<<std::endl;
     ss.seekp(0, std::ios_base::end);
     std::string method;
     ss >> method;
