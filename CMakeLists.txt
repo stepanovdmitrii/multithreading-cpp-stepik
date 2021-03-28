@@ -16,8 +16,8 @@ ENDIF(Boost_FOUND)
 
 file(GLOB_RECURSE final_SOURCES "final/*")
 
-file(MAKE_DIRECTORY /home/dmitrii/final)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/dmitrii/final)
+file(MAKE_DIRECTORY /home/box/final)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/box/final)
 
 set(USED_LIBS ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY} pthread)
 
