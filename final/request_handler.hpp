@@ -1,22 +1,22 @@
 #ifndef REQUEST_HANDLER_HPP
 #define REQUEST_HANDLER_HPP
 
-class request_handler
+#include <boost/core/noncopyable.hpp>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include "reply.hpp"
+
+class request_handler: private boost::noncopyable
 {
 private:
-    /* data */
+    std::string _doc_root;
+
+    static bool url_decode(const std::string& in, std::string& out);
 public:
-    request_handler(/* args */);
-    ~request_handler();
+    request_handler(const std::string& doc_root);
+
+    void handle_request(const std::string& req, reply& reply);
 };
-
-request_handler::request_handler(/* args */)
-{
-}
-
-request_handler::~request_handler()
-{
-}
-
 
 #endif
