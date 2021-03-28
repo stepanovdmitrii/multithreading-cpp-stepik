@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 
-find_package(Boost 1.71.0 REQUIRED)
+find_package(Boost 1.54.0 REQUIRED)
 
 IF(Boost_FOUND)
 include_directories(${Boost_INCLUDE_DIRS})
