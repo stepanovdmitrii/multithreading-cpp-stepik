@@ -22,4 +22,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/box/final)
 set(USED_LIBS ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY} pthread)
 
 add_executable(final ${final_SOURCES})
-target_link_libraries(final ${USED_LIBS})
+#target_link_libraries(final ${USED_LIBS})
