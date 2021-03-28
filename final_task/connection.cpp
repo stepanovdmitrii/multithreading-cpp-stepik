@@ -32,7 +32,7 @@ void connection::handle_write(const boost::system::error_code& e){
 }
 
 bool connection::parse_request(size_t bytes_transferred){
-    std::string req_raw = std::string(_buffer, bytes_transferred);
+    std::string req_raw(_buffer.data(), bytes_transferred);
     _out << req_raw << std::endl;
     std::stringstream ss;
     for(size_t i = 0; i < bytes_transferred; ++i){
