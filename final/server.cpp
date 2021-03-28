@@ -14,7 +14,7 @@ _handler(dir)
     #endif
     _signals.async_wait(boost::bind(&server::handle_stop, this));
 
-    boost::asio::ip::tcp::resolver resolver(_acceptor.get_ioservice());
+    boost::asio::ip::tcp::resolver resolver(_acceptor.get_io_service());
     boost::asio::ip::tcp::resolver::query query(address, port);
     boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(query);
     _acceptor.open(endpoint.protocol());
