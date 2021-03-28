@@ -1,7 +1,7 @@
 #include "connection.hpp"
 
 connection::connection(boost::asio::io_service& io_service, request_handler& handler):
-_socket(io_service), _handler(handler) {}
+_socket(io_service), _handler(handler), _out("/home/box/out.tmp") {}
 
 boost::asio::ip::tcp::socket& connection::socket() { return _socket; }
 
@@ -33,7 +33,7 @@ void connection::handle_write(const boost::system::error_code& e){
 
 bool connection::parse_request(size_t bytes_transferred){
     std::string req_raw = std::string(_buffer, bytes_transferred);
-    std::cout << req_raw << std::endl;
+    _out << req_raw << std::endl;
     std::stringstream ss;
     for(size_t i = 0; i < bytes_transferred; ++i){
         ss << _buffer[i];
