@@ -31,6 +31,7 @@ bool request_handler::url_decode(const std::string& in, std::string& out){
             out += in[i];
         }
     }
+    return true;
 }
 
 void request_handler::handle_request(const std::string& request, reply& reply){
@@ -47,6 +48,9 @@ void request_handler::handle_request(const std::string& request, reply& reply){
         return;
     }
 
+    if(path.size() == 1 && path[0] == '/'){
+        path = "/index.html";
+    }
     std::string full_path = _doc_root + path;
     std::ifstream file(full_path, std::ios::in | std::ios::binary);
     if(!file){

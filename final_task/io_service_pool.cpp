@@ -3,17 +3,18 @@
 io_service_pool::io_service_pool(size_t pool_size)
 :_next_service(0){
     for(size_t idx = 0; idx < pool_size; ++idx){
-        auto io_service = std::make_shared<boost::asio::io_service>();
-        auto io_service_work = std::make_shared<boost::asio::io_service::work>(*io_service);
+        boost::shared_ptr<boost::asio::io_service> io_service(new boost::asio::io_service);
+        boost::shared_ptr<boost::asio::io_service::work> io_service_work(new boost::asio::io_service::work(*io_service));
         _io_services.push_back(io_service);
         _io_services_works.push_back(io_service_work);
     }
 }
 
 void io_service_pool::run(){
-    std::vector<std::shared_ptr<std::thread>> workers;
+    std::vector<boost::shared_ptr<boost::thread>> workers;
     for(size_t idx = 0; idx < _io_services.size(); ++idx){
-        auto thread_ptr = std::make_shared<std::thread>([this,idx]() {this->_io_services[idx]->run();});
+        boost::shared_ptr<boost::thread> thread_ptr(new boost::thread(
+            boost::bind(&boost::asio::io_service::run, _io_services[idx])));
         workers.push_back(thread_ptr);
     }
 

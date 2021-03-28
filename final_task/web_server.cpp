@@ -17,7 +17,7 @@
 struct startup_args
 {
     std::string ip;
-    std::string port;
+    int port;
     std::string directory;
 };
 
@@ -93,6 +93,7 @@ int main(int argc, char **argv)
     }
     catch (std::exception &e)
     {
+        std::cout << "exception: " << e.what() << std::endl;
         exit(EXIT_FAILURE);
     }
     return 0;

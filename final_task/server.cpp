@@ -1,6 +1,6 @@
 #include "server.hpp"
 
-server::server(const std::string& address, std::string& port, const std::string& dir, size_t threads_count):
+server::server(const std::string& address, int port, const std::string& dir, size_t threads_count):
 _io_service_pool(threads_count),
 _signals(_io_service_pool.get_service()),
 _acceptor(_io_service_pool.get_service()),
@@ -14,9 +14,7 @@ _handler(dir)
     #endif
     _signals.async_wait(boost::bind(&server::handle_stop, this));
 
-    boost::asio::ip::tcp::resolver resolver(_acceptor.get_io_service());
-    boost::asio::ip::tcp::resolver::query query(address, port);
-    boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(query);
+    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address_v4(address), port);
     _acceptor.open(endpoint.protocol());
     _acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
     _acceptor.bind(endpoint);

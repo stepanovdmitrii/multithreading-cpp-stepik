@@ -21,7 +21,6 @@ private:
     std::string _request;
     reply _reply;
     std::array<char, 32768> _buffer;
-    std::ofstream _out;
 
     void handle_read(const boost::system::error_code& e, size_t bytes_transferred);
     void handle_write(const boost::system::error_code& e);

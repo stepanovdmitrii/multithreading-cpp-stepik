@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <iostream>
 #include "reply.hpp"
 
 class request_handler: private boost::noncopyable

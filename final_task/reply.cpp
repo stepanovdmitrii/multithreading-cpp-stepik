@@ -15,5 +15,5 @@ void reply::set_message(){
         ss << "\r\n";
     }
 
-    ss >> message;
+    message = ss.str();
 }
