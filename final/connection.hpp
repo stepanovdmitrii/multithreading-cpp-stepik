@@ -21,7 +21,8 @@ private:
     std::array<char, 32768> _buffer;
 
     void handle_read(const boost::system::error_code& e, size_t bytes_transferred);
-    bool parse_request();
+    void handle_write(const boost::system::error_code& e);
+    bool parse_request(size_t bytes_transferred);
 public:
     explicit connection(boost::asio::io_service& io_service, request_handler& handler);
 

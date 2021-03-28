@@ -88,7 +88,7 @@ int main(int argc, char **argv)
     startup_args arg = parse_args(argc, argv);
     try
     {
-        server s(arg.ip, arg.port, arg.directory);
+        server s(arg.ip, arg.port, arg.directory, 64);
         s.run();
     }
     catch (std::exception &e)

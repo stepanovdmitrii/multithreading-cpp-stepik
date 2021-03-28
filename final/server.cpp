@@ -12,7 +12,7 @@ _handler(dir)
     #if defined(SIGQUIT)
     _signals.add(SIGQUIT);
     #endif
-    _signals.async_wait([this](){this->handle_stop();});
+    _signals.async_wait(boost::bind(&server::handle_stop, this));
 
     boost::asio::ip::tcp::resolver resolver(_acceptor.get_executor());
     boost::asio::ip::tcp::resolver::query query(address, port);
@@ -30,7 +30,9 @@ void server::run(){
 }
 
 void server::start_accept(){
-    _next_connection.reset(new connection())
+    _next_connection.reset(new connection(_io_service_pool.get_service(), _handler));
+    _acceptor.async_accept(_next_connection->socket(),
+        boost::bind(&server::handle_accept, this, boost::asio::placeholders::error));
 }
 
 void server::handle_accept(const boost::system::error_code& e){
