@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 
-find_package(Boost 1.54.0 REQUIRED)
+find_package(Boost 1.54.0 REQUIRED COMPONENTS system thread)
 
 IF(Boost_FOUND)
 include_directories(${Boost_INCLUDE_DIRS})
