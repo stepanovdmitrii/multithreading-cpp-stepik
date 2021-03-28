@@ -13,8 +13,8 @@ _handler(dir)
     _signals.add(SIGQUIT);
     #endif
     _signals.async_wait(boost::bind(&server::handle_stop, this));
-
-    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address_v4(address), port);
+    boost::asio::ip::address_v4 addr = boost::asio::ip::address_v4::from_string(address);
+    boost::asio::ip::tcp::endpoint endpoint(addr, port);
     _acceptor.open(endpoint.protocol());
     _acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
     _acceptor.bind(endpoint);
