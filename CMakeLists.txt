@@ -19,7 +19,7 @@ file(GLOB_RECURSE final_SOURCES "final_task/*")
 file(MAKE_DIRECTORY /home/box/final)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY /home/box/final)
 
-set(USED_LIBS ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY} pthread)
+set(USED_LIBS ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_LIBRARIES} pthread)
 
 add_executable(final ${final_SOURCES})
 target_link_libraries(final ${USED_LIBS})
