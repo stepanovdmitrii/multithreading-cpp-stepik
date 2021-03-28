@@ -1,7 +1,7 @@
 #ifndef IO_SERVICE_POOL_HPP
 #define IO_SERVICE_POOL_HPP
 
-#include <boost/core/noncopyable.hpp>
+#include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
 
 #include <vector>

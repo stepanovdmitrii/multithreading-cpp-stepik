@@ -1,7 +1,7 @@
 #ifndef REQUEST_HANDLER_HPP
 #define REQUEST_HANDLER_HPP
 
-#include <boost/core/noncopyable.hpp>
+#include <boost/noncopyable.hpp>
 #include <string>
 #include <sstream>
 #include <fstream>

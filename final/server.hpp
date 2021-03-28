@@ -1,7 +1,7 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
-#include <boost/core/noncopyable.hpp>
+#include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 
