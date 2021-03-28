@@ -34,8 +34,10 @@ void connection::handle_write(const boost::system::error_code& e){
 bool connection::parse_request(size_t bytes_transferred){
     std::stringstream ss;
     for(size_t i = 0; i < bytes_transferred; ++i){
+        std::cout << (char)_buffer[i];
         ss << _buffer[i];
     }
+    std::cout<<std::endl;
     ss.seekp(0, std::ios_base::end);
     std::string method;
     ss >> method;

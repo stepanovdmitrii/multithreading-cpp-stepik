@@ -8,6 +8,7 @@
 
 #include <array>
 #include <string>
+#include <iostream>
 
 #include "request_handler.hpp"
 
